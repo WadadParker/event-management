@@ -1,0 +1,24 @@
+.navbar {
+    list-style: none;
+    width: fit-content;
+    border: 1px solid;
+    border-top: 0;
+    border-bottom: 0;
+    position: sticky;
+    height: 100vh;
+    top: 0;
+
+}
+
+.list {
+    font-size: 2em;
+    margin: 3em 2em;
+}
+.list:hover {
+    cursor: pointer;
+    text-decoration: underline;
+}
+.link {
+    text-decoration: none;
+    color: black;
+}
