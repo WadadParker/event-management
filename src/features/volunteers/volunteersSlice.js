@@ -4,50 +4,37 @@ import { createAsyncThunk } from "@reduxjs/toolkit";
 
 const apiUrl = import.meta.env.VITE_APP_API_BASE_URL;
 
-export const fetchVolunteers = createAsyncThunk("volunteers/fetchVolunteers", async ()=>{
-    const response = await fetch(`${apiUrl}/volunteers`)
-    const data = response.json();
-    return data.data.volunteers;
-})
+export const fetchVolunteers = createAsyncThunk("volunteers/fetchVolunteers", async () => {
+    const response = await axios.get(`${apiUrl}/volunteers`);
+    return response.data.volunteers;
+});
 
-export const addNewVolunteer = createAsyncThunk("volunteers/addVolunteer" , async (newVolunteer)=>
-{
-    const response = await fetch(`${apiUrl}/volunteers`, {
-        method:'POST',
-        headers:{
+export const addNewVolunteer = createAsyncThunk("volunteers/addVolunteer", async (newVolunteer) => {
+    const response = await axios.post(`${apiUrl}/volunteers`, newVolunteer, {
+        headers: {
             'Content-Type': 'application/json',
-        },
-        body:JSON.stringify(newVolunteer)
-    })
-    const data = await response.json();
-    return data.data.newVolunteer;
-})
-
-export const updateVolunteer = createAsyncThunk("volunteers/updateVolunteer" , async(volunteerDetails)=>
-{
-    const response = await fetch(`${apiUrl}/volunteers/${volunteerDetails._id}` , {
-        method:'POST',
-        headers:{
-            'Content-Type': 'application/json',
-        },
-        body:JSON.stringify(volunteerDetails)
+        }
     });
-    const data = await response.json();
+    return response.data.newVolunteer;
+});
 
-    return data.data.updatedVolunteer;
-})
+export const updateVolunteer = createAsyncThunk("volunteers/updateVolunteer", async (volunteerDetails) => {
+    const response = await axios.post(`${apiUrl}/volunteers/${volunteerDetails._id}`, volunteerDetails, {
+        headers: {
+            'Content-Type': 'application/json',
+        }
+    });
+    return response.data.updatedVolunteer;
+});
 
-export const deleteVolunteer = createAsyncThunk("volunteers/deleteVolunteer", async(volunteerId)=>
-{
-    const response = await fetch(`${apiUrl}/volunteers/${volunteerId}`, {
-        method:'DELETE',
-        headers:{
-            'Content-type':'application/json',
-        },
-    })
-    const data = await response.json();
-    return data.data.deletedVolunteer;
-})
+export const deleteVolunteer = createAsyncThunk("volunteers/deleteVolunteer", async (volunteerId) => {
+    const response = await axios.delete(`${apiUrl}/volunteers/${volunteerId}`, {
+        headers: {
+            'Content-Type': 'application/json',
+        }
+    });
+    return response.data.deletedVolunteer;
+});
 
 const initialState ={
     volunteers:[],
@@ -60,12 +47,12 @@ export const volunteersSlice = createSlice({name:"volunteers",initialState,reduc
     [fetchVolunteers.pending]: (state) =>{
         state.status = "idle"
     },
-    [fetchVolunteers.fulfilled]: (state) => 
+    [fetchVolunteers.fulfilled]: (state, action) => 
     {
         state.status = "success";
         state.volunteers = action.payload;
     },
-    [fetchVolunteers.rejected]: (state)=>
+    [fetchVolunteers.rejected]: (state, action)=>
     {
         state.status = "error";
         state.error = action.error.message;
@@ -75,12 +62,12 @@ export const volunteersSlice = createSlice({name:"volunteers",initialState,reduc
     {
         state.status = "idle"
     },
-    [addNewVolunteer.fulfilled]: (state)=>
+    [addNewVolunteer.fulfilled]: (state, action)=>
     {
         state.status = "success";
         state.volunteers.push(action.payload);
     },
-    [addNewVolunteer.rejected]: (state) =>
+    [addNewVolunteer.rejected]: (state, action) =>
     {
         state.state="error";
         state.error= action.error.message;
@@ -90,7 +77,7 @@ export const volunteersSlice = createSlice({name:"volunteers",initialState,reduc
     {
         state.status = "idle"
     },
-    [updateVolunteer.fulfilled]: (state)=>
+    [updateVolunteer.fulfilled]: (state, action)=>
     {
         state.success = "success";
         const updatedVolunteer = action.payload;
@@ -101,7 +88,7 @@ export const volunteersSlice = createSlice({name:"volunteers",initialState,reduc
             state.volunteers[index] = updatedVolunteer;
         }
     },
-    [updateVolunteer.rejected]: (state)=>
+    [updateVolunteer.rejected]: (state, action)=>
     {
         state.status="error";
         state.error = action.error.message;
@@ -111,10 +98,16 @@ export const volunteersSlice = createSlice({name:"volunteers",initialState,reduc
     {
         state.status = "idle"
     },
-    [deleteVolunteer.fulfilled]: (state)=>
+    [deleteVolunteer.fulfilled]: (state, action)=>
     {
         state.status = "success",
         state.volunteers = [...state.volunteers].filter(volunteer=>volunteer._id!== action.payload._id)
+    },
+    [deleteVolunteer.rejected]: (state,action)=>
+    {
+        state.status = "error",
+        state.error = action.error.message
     }
+    
 
 }})

@@ -1,0 +1,41 @@
+.container {
+    display: grid;
+}
+
+.section {
+    display: grid;
+    grid-template-columns: 1fr 1fr auto;
+    justify-content: space-around;
+    align-items: center;
+    column-gap: 1em;
+}
+.button {
+    padding: 0.4em 0.8em;
+    background-color: white;
+    border: 1px solid black;
+    color: black;
+}
+.button:hover {
+    color: rgb(52, 225, 52);
+    border-color: rgb(52, 225, 52);
+    cursor: pointer;
+}
+.button:disabled {
+    filter: brightness(0.8);
+}
+.button:disabled:hover {
+    cursor: not-allowed;
+}
+
+.list-item {
+    display: grid;
+    grid-template-columns: 2fr 1fr;
+    justify-content: center;
+    justify-items: center;
+    align-items: center;
+    margin: 0.5em;
+}
+.icon:hover {
+    color: rgb(239, 70, 70);
+    cursor: pointer;
+}
