@@ -1,0 +1,17 @@
+.form-container {
+    box-shadow: 1px 1px 6px 2px rgb(179, 178, 178);
+    display: grid;
+    justify-items: center;
+    width: fit-content;
+    border: 1px solid rgb(179, 178, 178);
+    border-radius: 8px;
+    padding:  1em;
+    height: 60%;
+    margin: 1em 1em 1em 20%;
+}
+.form-container p {
+    margin: 0;
+}
+.heading {
+    margin: 0;
+}
