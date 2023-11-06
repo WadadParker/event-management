@@ -9,6 +9,7 @@ import styles from './eventsList.module.css';
 import { fetchEvents, updateEvent, deleteEvent } from '../eventsSlice';
 
 import { useDispatch, useSelector } from "react-redux";
+import { EventEditModal } from '../editEvent/EventEditModal';
 
 export const EventsList = () => 
 {
@@ -33,6 +34,8 @@ export const EventsList = () =>
     },[dispatch]);
     
   return (
+    <>
+    {showModal.modal &&  <EventEditModal item={showModal.item} setShowModal={setShowModal} editHandler={editHandler}/>}
     <table className={styles.table}>
         <thead >
             <tr className={styles[`heading-row`]}>
@@ -55,5 +58,6 @@ export const EventsList = () =>
             }
         </tbody>
     </table>
+    </>
   )
 }

@@ -1,0 +1,60 @@
+.background-container {
+    width: 100vw;
+    height: 100vh;
+    background-color: rgb(177, 177, 177,0.5);
+    position: fixed;
+    display: flex;
+    place-content: center;
+    place-items: center;
+    z-index: 100;
+    top: 0;
+    left: 0;
+}
+.modal-container {
+    background-color: white;
+    border: 1px solid white;
+    border-radius: 8px;
+    margin-top: -15%;
+    width: 35rem;
+    height: fit-content;
+    padding: 1em;
+    display: grid;
+    text-align: center;
+    gap: 1em;
+    z-index: 101;
+}
+.modal-container input {
+    padding: 0.5em;
+}
+.button-container {
+    display: flex;
+    justify-content: space-between;
+}
+.update {
+    padding: 0.5em 1em;
+    color: var(--primary-color);
+    background-color: white;
+    border: 1px solid white;
+    border-radius: 4px;
+    transition: 300ms;
+}
+.update:hover {
+    border-color: var(--primary-color);
+    cursor: pointer;
+}
+.update:disabled {
+    filter: brightness(0.7);
+    cursor: not-allowed;
+}
+.close {
+    padding: 0.5em 1em;
+    color: rgb(237, 52, 52);
+    background-color: white;
+    border: 1px solid white;
+    border-radius: 4px;
+    transition: 300ms;
+}
+.close:hover {
+    border-color: rgb(237, 52, 52);
+    cursor: pointer;
+}
