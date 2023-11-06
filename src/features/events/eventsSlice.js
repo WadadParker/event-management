@@ -4,18 +4,26 @@ import { createAsyncThunk } from "@reduxjs/toolkit";
 
 const apiUrl = import.meta.env.VITE_APP_API_BASE_URL;
 
+import axios from "axios";
+
 export const fetchEvents = createAsyncThunk("events/fetchEvents", async () => {
     const response = await axios.get(`${apiUrl}/events`);
     return response.data.events;
 });
 
 export const addNewEvent = createAsyncThunk("events/addEvent", async (newEvent) => {
+   try{
     const response = await axios.post(`${apiUrl}/events`, newEvent, {
         headers: {
             'Content-Type': 'application/json',
         }
     });
     return response.data.newEvent;
+}
+catch(error) {
+    console.error('Error adding new event:', error);
+        throw error;
+}
 });
 
 export const updateEvent = createAsyncThunk("events/updateEvent", async (eventDetails) => {

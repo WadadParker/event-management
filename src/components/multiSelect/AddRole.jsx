@@ -32,7 +32,7 @@ export const AddRole = ({volunteers,setVolunteers}) =>
     <div className={styles.container}>
         <section className={styles.section}>
             <input placeholder='Role' value={input.role} onChange={(e)=>changeHandler("role",e.target.value)}/>
-            <input placeholder='Number of Volunteers' onChange={(e)=>changeHandler("requiredVolunteers",Number(e.target.value))}/>
+            <input placeholder='Number of Volunteers' value={input.requiredVolunteers} onChange={(e)=>changeHandler("requiredVolunteers",Number(e.target.value))}/>
             <button disabled={isDisabled()} className={styles.button} onClick={()=>clickHandler()}>+</button>
         </section>
 

@@ -8,9 +8,11 @@ import { AddRole } from "../../../components/multiSelect/AddRole";
 
 export const AddEvent = () => 
 {
+  const dispatch =useDispatch();
+
   const [input,setInput] = useState({name:"",date:"",location:"",description:""});
 
-  const [volunteers,setVolunteers] = useState([{role:"Captain",requiredVolunteers:5}]);
+  const [volunteers,setVolunteers] = useState([]);
 
   const changeHandler = (inputField , text)=> {
     setInput(prev=>({...prev, [inputField]:text}));
@@ -20,8 +22,9 @@ export const AddEvent = () =>
 
   const clickHandler = () =>
   {
-    setInput({name:"",date:"",location:"",description:"",
-    volunteerRoleRequirements:[]});
+    dispatch(addNewEvent({...input,volunteerRoleRequirements:volunteers}));
+    setInput({name:"",date:"",location:"",description:""});
+    setVolunteers([]);
   }
 
   return (
