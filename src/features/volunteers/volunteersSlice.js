@@ -2,6 +2,8 @@ import { createSlice } from "@reduxjs/toolkit";
 
 import { createAsyncThunk } from "@reduxjs/toolkit";
 
+import axios from "axios";
+
 const apiUrl = import.meta.env.VITE_APP_API_BASE_URL;
 
 export const fetchVolunteers = createAsyncThunk("volunteers/fetchVolunteers", async () => {

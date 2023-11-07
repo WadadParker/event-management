@@ -20,14 +20,15 @@ export const AddVolunteer = () =>
 
   const handleSelectChange = (e) => {
     const selectedOptions = Array.from(e.target.selectedOptions, option => option.value);
-    setInput(prev=>({ ...input, assignedEvents: selectedOptions }));
+    setInput(prev=>({ ...prev, assignedEvents: selectedOptions }));
   };
 
   const isDisabled = () => input.name==="" || input.contact==="" || input.skills==="" || input.assignedEvents.length===0 || input.areasOfInterest===""
 
   const clickHandler = () =>
   {
-    // dispatch(addNewVolunteer(input));
+    console.log(input);
+    dispatch(addNewVolunteer(input));
     setInput({name:"",contact:"",skills:"",availability:false,assignedEvents:[],areasOfInterest:""})
   }
 
