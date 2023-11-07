@@ -5,7 +5,7 @@ import { SideBar } from "./components/sideBar/sideBar"
 import { Volunteers } from "./pages/volunteers/Volunteers"
 import { Events } from "./pages/events/Events"
 import { EventDetails } from "./features/events/eventDetails/EventDetails"
-
+import { VolunteerDetails } from "./features/volunteers/volunteerDetails/VolunteerDetails"
 
 function App() {
 
@@ -17,6 +17,7 @@ function App() {
         <Route path="/" element={<Volunteers />} />
         <Route path="/events" element={<Events />} />
         <Route path="/events/:eventId" element={<EventDetails />} />
+        <Route path="/volunteers/:volunteerId" element={<VolunteerDetails />} />
       </Routes>
 
     </div>

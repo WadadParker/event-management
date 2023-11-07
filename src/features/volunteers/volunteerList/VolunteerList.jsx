@@ -16,6 +16,8 @@ export const VolunteerList = () =>
     const volunteers = useSelector(state=>state.volunteers.volunteers);
     const dispatch = useDispatch();
 
+    const status = useSelector(state=>state.volunteers.loading);
+
     const [showModal,setShowModal] = useState({ modal: false, item: {} });
 
     const editHandler=(newVolunteer)=>
@@ -35,7 +37,9 @@ export const VolunteerList = () =>
   return (
     <>{showModal.modal &&  <EditVolunteerModal item={showModal.item} setShowModal={setShowModal} editHandler={editHandler}/>}
     
-    <table className={styles.table}>
+    {status==="idle"
+    ? <h3>Loading...</h3>
+    :<table className={styles.table}>
         <thead >
             <tr className={styles[`heading-row`]}>
                 <th>Name</th>
@@ -56,7 +60,7 @@ export const VolunteerList = () =>
             ))
             }
         </tbody>
-    </table>
+    </table>}
     </>
   )
 }
