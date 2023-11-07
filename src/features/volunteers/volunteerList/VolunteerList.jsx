@@ -8,6 +8,7 @@ import { faTrash, faPenToSquare } from "@fortawesome/free-solid-svg-icons";
 
 import { useDispatch, useSelector } from "react-redux";
 import { fetchVolunteers, updateVolunteer, deleteVolunteer } from "../volunteersSlice";
+import { EditVolunteerModal } from "../editVolunteer/EditVolunteerModal";
 
 export const VolunteerList = () => 
 {
@@ -32,6 +33,8 @@ export const VolunteerList = () =>
     },[dispatch,volunteers])
 
   return (
+    <>{showModal.modal &&  <EditVolunteerModal item={showModal.item} setShowModal={setShowModal} editHandler={editHandler}/>}
+    
     <table className={styles.table}>
         <thead >
             <tr className={styles[`heading-row`]}>
@@ -54,5 +57,6 @@ export const VolunteerList = () =>
             }
         </tbody>
     </table>
+    </>
   )
 }
