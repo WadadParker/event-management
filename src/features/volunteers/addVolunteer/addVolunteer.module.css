@@ -1,0 +1,44 @@
+.form-container {
+    box-shadow: 1px 1px 6px 2px rgb(179, 178, 178);
+    display: grid;
+    justify-items: center;
+    width: fit-content;
+    gap: 1em;
+    border: 1px solid rgb(179, 178, 178);
+    border-radius: 8px;
+    padding: 1em;
+}
+.heading {
+    margin: 0;
+}
+
+.form-container input {
+    padding: 0.5em 1em;
+    border: 1px solid gray;
+    border-radius: 4px;
+}
+
+.button {
+    color: white;
+    background-color: #213547;
+    border: 1px solid #213547;
+    border-radius: 4px;
+    padding: 0.5em 1em;
+    transition: 300ms;
+}
+.button:hover {
+    color: #213547;
+    background-color: white;
+    cursor: pointer;
+}
+.button:disabled {
+    filter: brightness(0.8);
+}
+.button:hover:disabled {
+    filter: brightness(0.8);
+    cursor: not-allowed;
+}
+
+.select {
+    padding: 0.5em 1em;
+}
